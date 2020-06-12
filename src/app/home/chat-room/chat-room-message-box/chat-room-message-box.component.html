@@ -1,0 +1,9 @@
+<ng-container *ngFor="let message of (homeService.chatRoomMessageList$ | async)?.list; last as last">
+  <ocr-chat-room-message class="message" 
+    [name]="message.sender.name"
+    [time]="message.sentAt"
+    [content]="message.content"
+  >
+  </ocr-chat-room-message>
+  <mat-divider *ngIf="!last"></mat-divider>
+</ng-container>

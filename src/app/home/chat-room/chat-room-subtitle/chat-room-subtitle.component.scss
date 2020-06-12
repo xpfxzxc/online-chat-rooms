@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.mat-icon {
+  display: inline-block;
+  margin-right: 4px;
+}

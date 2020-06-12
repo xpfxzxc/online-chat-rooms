@@ -1,0 +1,14 @@
+.mat-dialog-content {
+  width: 400px;
+  height: 180px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.create-room-form {
+  .mat-form-field:not(:first-child) {
+    margin-top: 15px;
+  }
+}

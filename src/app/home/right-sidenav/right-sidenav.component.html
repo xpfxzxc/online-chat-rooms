@@ -1,0 +1,14 @@
+<div class="description-wrapper">
+  <mat-card class="description">
+    <mat-card-title>房间介绍</mat-card-title>
+    <ng-container *ngIf="homeService.chatRoomDescription$ | async as data">
+      <mat-card-subtitle>创建于 {{ toYearMonthDay(data.createdAt) }}</mat-card-subtitle>
+      <mat-card-content>
+        {{ data.introduction || '无' }}
+      </mat-card-content>
+    </ng-container>
+  </mat-card>
+  <mat-divider></mat-divider>
+</div>
+
+<ocr-member-list class="member-list"></ocr-member-list>

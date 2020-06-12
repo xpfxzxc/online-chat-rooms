@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button routerLink="/">
+      <mat-icon class="logo-icon">chat</mat-icon>
+      <h1 class="app-name">Online Chat Rooms</h1>
+    </button>
+
+    <span class="fill-remaining-space"></span>
+
+    <ng-container *ngIf="authService.isAuthenticated$ | async; else loginAndSignUp">
+      <button mat-button [matMenuTriggerFor]="profile" class="text-large-far">
+        {{ (authService.authenticatedUserInfo$ | async).name }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #profile="matMenu">
+        <button mat-menu-item (click)="openRenameDialog()">修改昵称</button>
+        <button mat-menu-item (click)="authService.logout()">退出</button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-template #loginAndSignUp>
+      <button mat-button routerLink="/sign-up" class="text-large-far">注册</button>
+      <button mat-button routerLink="/login" class="text-large-far">登录</button>
+    </ng-template>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-progress-bar [color]="progressBar.color$ | async" [mode]="progressBar.mode$ | async" [value]="progressBar.value"></mat-progress-bar>

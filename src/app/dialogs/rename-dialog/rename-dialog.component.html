@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>修改昵称</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="renameForm" (keyup.enter)="submit()">
+    <mat-form-field hintLabel="2 ~ 25 个任意字符，前后不含空格">
+      <input matInput placeholder="新昵称" formControlName="name" cdkFocusInitial>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>取消</button>
+  <div class="spinner-btn">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner diameter="20"></mat-spinner>
+    </div>
+    <button mat-flat-button color="primary" class="rename-btn" (click)="submit()" [disabled]="loading">确定</button>
+  </div>
+</mat-dialog-actions>

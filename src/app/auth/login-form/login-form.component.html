@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" class="login-form">
+  <mat-form-field>
+    <input matInput placeholder="昵称" formControlName="name">
+    <mat-error>请输入昵称</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="密码" formControlName="password">
+    <mat-error>请输入密码</mat-error>
+  </mat-form-field>
+
+  <mat-checkbox color="primary" #checkbox (change)="toggle(checkbox.checked)" [checked]="autoLogin">7 天内免登录</mat-checkbox>
+
+  <div class="spinner-btn">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner diameter="24"></mat-spinner>
+    </div>
+    <button mat-flat-button color="primary" class="login-btn" (click)="submit()" [disabled]="loading">登录</button>
+  </div>
+</form>

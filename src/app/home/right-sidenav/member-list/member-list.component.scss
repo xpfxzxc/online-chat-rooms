@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.fixed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.room-member-status {
+  padding-left: 12px;
+  cursor: default;
+}
+
+.list {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.status-icon {
+  font-size: 21px;
+}
+
+.name {
+  margin-left: 12px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}

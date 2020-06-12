@@ -1,0 +1,28 @@
+<mat-card>
+  <div class="header">
+    <div class="header-wrapper">
+      <div class="room-info">
+        <mat-card-title>
+          <ocr-chat-room-title></ocr-chat-room-title>
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          <ocr-chat-room-subtitle></ocr-chat-room-subtitle>
+        </mat-card-subtitle>
+      </div>
+
+      <div class="room-actions">
+        <button mat-icon-button matTooltip="退出房间"><mat-icon>exit_to_app</mat-icon></button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+  </div>
+
+  <ocr-chat-room-message-box class="message-box"></ocr-chat-room-message-box>
+
+  <mat-card-actions>
+    <mat-divider></mat-divider>
+    <ocr-chat-room-form class="form"></ocr-chat-room-form>
+  </mat-card-actions>
+</mat-card>

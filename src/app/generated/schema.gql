@@ -1,0 +1,2240 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+input change_password_input {
+  new_password: String!
+}
+
+type change_password_response {
+  success: Boolean!
+}
+
+type chat_message {
+  created_at: timestamptz!
+  id: Int!
+  message: String!
+  room_id: Int!
+  sender_id: Int!
+}
+
+type chat_message_aggregate {
+  aggregate: chat_message_aggregate_fields
+  nodes: [chat_message!]!
+}
+
+type chat_message_aggregate_fields {
+  avg: chat_message_avg_fields
+  count(columns: [chat_message_select_column!], distinct: Boolean): Int
+  max: chat_message_max_fields
+  min: chat_message_min_fields
+  stddev: chat_message_stddev_fields
+  stddev_pop: chat_message_stddev_pop_fields
+  stddev_samp: chat_message_stddev_samp_fields
+  sum: chat_message_sum_fields
+  var_pop: chat_message_var_pop_fields
+  var_samp: chat_message_var_samp_fields
+  variance: chat_message_variance_fields
+}
+
+input chat_message_aggregate_order_by {
+  avg: chat_message_avg_order_by
+  count: order_by
+  max: chat_message_max_order_by
+  min: chat_message_min_order_by
+  stddev: chat_message_stddev_order_by
+  stddev_pop: chat_message_stddev_pop_order_by
+  stddev_samp: chat_message_stddev_samp_order_by
+  sum: chat_message_sum_order_by
+  var_pop: chat_message_var_pop_order_by
+  var_samp: chat_message_var_samp_order_by
+  variance: chat_message_variance_order_by
+}
+
+input chat_message_arr_rel_insert_input {
+  data: [chat_message_insert_input!]!
+  on_conflict: chat_message_on_conflict
+}
+
+type chat_message_avg_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_avg_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+input chat_message_bool_exp {
+  _and: [chat_message_bool_exp]
+  _not: chat_message_bool_exp
+  _or: [chat_message_bool_exp]
+  created_at: timestamptz_comparison_exp
+  id: Int_comparison_exp
+  message: String_comparison_exp
+  room_id: Int_comparison_exp
+  sender_id: Int_comparison_exp
+}
+
+enum chat_message_constraint {
+    chat_message_pkey
+}
+
+input chat_message_inc_input {
+  id: Int
+  room_id: Int
+  sender_id: Int
+}
+
+input chat_message_insert_input {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+}
+
+type chat_message_max_fields {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+}
+
+input chat_message_max_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_min_fields {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+}
+
+input chat_message_min_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_mutation_response {
+    affected_rows: Int!
+
+    returning: [chat_message!]!
+}
+
+input chat_message_obj_rel_insert_input {
+  data: chat_message_insert_input!
+  on_conflict: chat_message_on_conflict
+}
+
+input chat_message_on_conflict {
+  constraint: chat_message_constraint!
+  update_columns: [chat_message_update_column!]!
+  where: chat_message_bool_exp
+}
+
+input chat_message_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+enum chat_message_select_column {
+    created_at
+
+    id
+
+    message
+
+    room_id
+
+    sender_id
+}
+
+input chat_message_set_input {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+}
+
+type chat_message_stddev_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_stddev_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_stddev_pop_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_stddev_pop_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_stddev_samp_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_stddev_samp_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_sum_fields {
+  id: Int
+  room_id: Int
+  sender_id: Int
+}
+
+input chat_message_sum_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+enum chat_message_update_column {
+    created_at
+
+    id
+
+    message
+
+    room_id
+
+    sender_id
+}
+
+type chat_message_var_pop_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_var_pop_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_var_samp_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_var_samp_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_message_variance_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+}
+
+input chat_message_variance_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+}
+
+type chat_room_member_offline {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+type chat_room_member_offline_aggregate {
+  aggregate: chat_room_member_offline_aggregate_fields
+  nodes: [chat_room_member_offline!]!
+}
+
+type chat_room_member_offline_aggregate_fields {
+  avg: chat_room_member_offline_avg_fields
+  count(columns: [chat_room_member_offline_select_column!], distinct: Boolean): Int
+  max: chat_room_member_offline_max_fields
+  min: chat_room_member_offline_min_fields
+  stddev: chat_room_member_offline_stddev_fields
+  stddev_pop: chat_room_member_offline_stddev_pop_fields
+  stddev_samp: chat_room_member_offline_stddev_samp_fields
+  sum: chat_room_member_offline_sum_fields
+  var_pop: chat_room_member_offline_var_pop_fields
+  var_samp: chat_room_member_offline_var_samp_fields
+  variance: chat_room_member_offline_variance_fields
+}
+
+input chat_room_member_offline_aggregate_order_by {
+  avg: chat_room_member_offline_avg_order_by
+  count: order_by
+  max: chat_room_member_offline_max_order_by
+  min: chat_room_member_offline_min_order_by
+  stddev: chat_room_member_offline_stddev_order_by
+  stddev_pop: chat_room_member_offline_stddev_pop_order_by
+  stddev_samp: chat_room_member_offline_stddev_samp_order_by
+  sum: chat_room_member_offline_sum_order_by
+  var_pop: chat_room_member_offline_var_pop_order_by
+  var_samp: chat_room_member_offline_var_samp_order_by
+  variance: chat_room_member_offline_variance_order_by
+}
+
+type chat_room_member_offline_avg_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_avg_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+input chat_room_member_offline_bool_exp {
+  _and: [chat_room_member_offline_bool_exp]
+  _not: chat_room_member_offline_bool_exp
+  _or: [chat_room_member_offline_bool_exp]
+  member_id: Int_comparison_exp
+  member_last_seen: timestamptz_comparison_exp
+  member_name: String_comparison_exp
+  room_id: Int_comparison_exp
+  user_id: Int_comparison_exp
+}
+
+type chat_room_member_offline_max_fields {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_offline_max_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_min_fields {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_offline_min_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+input chat_room_member_offline_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+enum chat_room_member_offline_select_column {
+    member_id
+
+    member_last_seen
+
+    member_name
+
+    room_id
+
+    user_id
+}
+
+type chat_room_member_offline_stddev_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_stddev_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_stddev_pop_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_stddev_pop_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_stddev_samp_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_stddev_samp_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_sum_fields {
+  member_id: Int
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_offline_sum_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_var_pop_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_var_pop_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_var_samp_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_var_samp_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_offline_variance_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_offline_variance_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+type chat_room_member_online_aggregate {
+  aggregate: chat_room_member_online_aggregate_fields
+  nodes: [chat_room_member_online!]!
+}
+
+type chat_room_member_online_aggregate_fields {
+  avg: chat_room_member_online_avg_fields
+  count(columns: [chat_room_member_online_select_column!], distinct: Boolean): Int
+  max: chat_room_member_online_max_fields
+  min: chat_room_member_online_min_fields
+  stddev: chat_room_member_online_stddev_fields
+  stddev_pop: chat_room_member_online_stddev_pop_fields
+  stddev_samp: chat_room_member_online_stddev_samp_fields
+  sum: chat_room_member_online_sum_fields
+  var_pop: chat_room_member_online_var_pop_fields
+  var_samp: chat_room_member_online_var_samp_fields
+  variance: chat_room_member_online_variance_fields
+}
+
+input chat_room_member_online_aggregate_order_by {
+  avg: chat_room_member_online_avg_order_by
+  count: order_by
+  max: chat_room_member_online_max_order_by
+  min: chat_room_member_online_min_order_by
+  stddev: chat_room_member_online_stddev_order_by
+  stddev_pop: chat_room_member_online_stddev_pop_order_by
+  stddev_samp: chat_room_member_online_stddev_samp_order_by
+  sum: chat_room_member_online_sum_order_by
+  var_pop: chat_room_member_online_var_pop_order_by
+  var_samp: chat_room_member_online_var_samp_order_by
+  variance: chat_room_member_online_variance_order_by
+}
+
+type chat_room_member_online_avg_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_avg_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+input chat_room_member_online_bool_exp {
+  _and: [chat_room_member_online_bool_exp]
+  _not: chat_room_member_online_bool_exp
+  _or: [chat_room_member_online_bool_exp]
+  member_id: Int_comparison_exp
+  member_last_seen: timestamptz_comparison_exp
+  member_name: String_comparison_exp
+  room_id: Int_comparison_exp
+  user_id: Int_comparison_exp
+}
+
+type chat_room_member_online_max_fields {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_online_max_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_min_fields {
+  member_id: Int
+  member_last_seen: timestamptz
+  member_name: String
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_online_min_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+input chat_room_member_online_order_by {
+  member_id: order_by
+  member_last_seen: order_by
+  member_name: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+enum chat_room_member_online_select_column {
+    member_id
+
+    member_last_seen
+
+    member_name
+
+    room_id
+
+    user_id
+}
+
+type chat_room_member_online_stddev_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_stddev_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_stddev_pop_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_stddev_pop_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_stddev_samp_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_stddev_samp_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_sum_fields {
+  member_id: Int
+  room_id: Int
+  user_id: Int
+}
+
+input chat_room_member_online_sum_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_var_pop_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_var_pop_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_var_samp_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_var_samp_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_member_online_variance_fields {
+  member_id: Float
+  room_id: Float
+  user_id: Float
+}
+
+input chat_room_member_online_variance_order_by {
+  member_id: order_by
+  room_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+
+    sender: user
+  sender_id: Int
+  user_id: Int
+}
+
+type chat_room_message_aggregate {
+  aggregate: chat_room_message_aggregate_fields
+  nodes: [chat_room_message!]!
+}
+
+type chat_room_message_aggregate_fields {
+  avg: chat_room_message_avg_fields
+  count(columns: [chat_room_message_select_column!], distinct: Boolean): Int
+  max: chat_room_message_max_fields
+  min: chat_room_message_min_fields
+  stddev: chat_room_message_stddev_fields
+  stddev_pop: chat_room_message_stddev_pop_fields
+  stddev_samp: chat_room_message_stddev_samp_fields
+  sum: chat_room_message_sum_fields
+  var_pop: chat_room_message_var_pop_fields
+  var_samp: chat_room_message_var_samp_fields
+  variance: chat_room_message_variance_fields
+}
+
+input chat_room_message_aggregate_order_by {
+  avg: chat_room_message_avg_order_by
+  count: order_by
+  max: chat_room_message_max_order_by
+  min: chat_room_message_min_order_by
+  stddev: chat_room_message_stddev_order_by
+  stddev_pop: chat_room_message_stddev_pop_order_by
+  stddev_samp: chat_room_message_stddev_samp_order_by
+  sum: chat_room_message_sum_order_by
+  var_pop: chat_room_message_var_pop_order_by
+  var_samp: chat_room_message_var_samp_order_by
+  variance: chat_room_message_variance_order_by
+}
+
+type chat_room_message_avg_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_avg_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+input chat_room_message_bool_exp {
+  _and: [chat_room_message_bool_exp]
+  _not: chat_room_message_bool_exp
+  _or: [chat_room_message_bool_exp]
+  created_at: timestamptz_comparison_exp
+  id: Int_comparison_exp
+  message: String_comparison_exp
+  room_id: Int_comparison_exp
+  sender: user_bool_exp
+  sender_id: Int_comparison_exp
+  user_id: Int_comparison_exp
+}
+
+type chat_room_message_max_fields {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+  user_id: Int
+}
+
+input chat_room_message_max_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_min_fields {
+  created_at: timestamptz
+  id: Int
+  message: String
+  room_id: Int
+  sender_id: Int
+  user_id: Int
+}
+
+input chat_room_message_min_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+input chat_room_message_order_by {
+  created_at: order_by
+  id: order_by
+  message: order_by
+  room_id: order_by
+  sender: user_order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+enum chat_room_message_select_column {
+    created_at
+
+    id
+
+    message
+
+    room_id
+
+    sender_id
+
+    user_id
+}
+
+type chat_room_message_stddev_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_stddev_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_stddev_pop_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_stddev_pop_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_stddev_samp_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_stddev_samp_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_sum_fields {
+  id: Int
+  room_id: Int
+  sender_id: Int
+  user_id: Int
+}
+
+input chat_room_message_sum_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_var_pop_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_var_pop_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_var_samp_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_var_samp_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+type chat_room_message_variance_fields {
+  id: Float
+  room_id: Float
+  sender_id: Float
+  user_id: Float
+}
+
+input chat_room_message_variance_order_by {
+  id: order_by
+  room_id: order_by
+  sender_id: order_by
+  user_id: order_by
+}
+
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+type logged_user {
+  created_at: timestamptz!
+  id: Int!
+  name: String!
+}
+
+input login_input {
+  name: String!
+  password: String!
+}
+
+type login_response {
+  token: String!
+  user: logged_user!
+}
+
+type Mutation {
+  change_password(input: change_password_input!): change_password_response!
+  login(input: login_input!): login_response!
+  sign_up(input: sign_up_input!): sign_up_response!
+}
+
+extend type Mutation {
+  change_password(input: change_password_input!): change_password_response!
+
+    delete_chat_message(
+        where: chat_message_bool_exp!
+  ): chat_message_mutation_response
+
+    delete_room(
+        where: room_bool_exp!
+  ): room_mutation_response
+
+    delete_user(
+        where: user_bool_exp!
+  ): user_mutation_response
+
+    delete_user_room(
+        where: user_room_bool_exp!
+  ): user_room_mutation_response
+
+    insert_chat_message(
+        objects: [chat_message_insert_input!]!
+
+        on_conflict: chat_message_on_conflict
+  ): chat_message_mutation_response
+
+    insert_room(
+        objects: [room_insert_input!]!
+
+        on_conflict: room_on_conflict
+  ): room_mutation_response
+
+    insert_user(
+        objects: [user_insert_input!]!
+
+        on_conflict: user_on_conflict
+  ): user_mutation_response
+
+    insert_user_room(
+        objects: [user_room_insert_input!]!
+
+        on_conflict: user_room_on_conflict
+  ): user_room_mutation_response
+  login(input: login_input!): login_response!
+  sign_up(input: sign_up_input!): sign_up_response!
+
+    update_chat_message(
+        _inc: chat_message_inc_input
+
+        _set: chat_message_set_input
+
+        where: chat_message_bool_exp!
+  ): chat_message_mutation_response
+
+    update_room(
+        _inc: room_inc_input
+
+        _set: room_set_input
+
+        where: room_bool_exp!
+  ): room_mutation_response
+
+    update_user(
+        _inc: user_inc_input
+
+        _set: user_set_input
+
+        where: user_bool_exp!
+  ): user_mutation_response
+
+    update_user_room(
+        _inc: user_room_inc_input
+
+        _set: user_room_set_input
+
+        where: user_room_bool_exp!
+  ): user_room_mutation_response
+}
+
+enum order_by {
+    asc
+
+    asc_nulls_first
+
+    asc_nulls_last
+
+    desc
+
+    desc_nulls_first
+
+    desc_nulls_last
+}
+
+type Query {
+  logged_user: logged_user!
+}
+
+extend type Query {
+    chat_message(
+        distinct_on: [chat_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_message_order_by!]
+
+        where: chat_message_bool_exp
+  ): [chat_message!]!
+
+    chat_message_aggregate(
+        distinct_on: [chat_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_message_order_by!]
+
+        where: chat_message_bool_exp
+  ): chat_message_aggregate!
+
+    chat_message_by_pk(id: Int!): chat_message
+
+    chat_room_member_offline(
+        distinct_on: [chat_room_member_offline_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_offline_order_by!]
+
+        where: chat_room_member_offline_bool_exp
+  ): [chat_room_member_offline!]!
+
+    chat_room_member_offline_aggregate(
+        distinct_on: [chat_room_member_offline_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_offline_order_by!]
+
+        where: chat_room_member_offline_bool_exp
+  ): chat_room_member_offline_aggregate!
+
+    chat_room_member_online(
+        distinct_on: [chat_room_member_online_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_online_order_by!]
+
+        where: chat_room_member_online_bool_exp
+  ): [chat_room_member_online!]!
+
+    chat_room_member_online_aggregate(
+        distinct_on: [chat_room_member_online_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_online_order_by!]
+
+        where: chat_room_member_online_bool_exp
+  ): chat_room_member_online_aggregate!
+
+    chat_room_message(
+        distinct_on: [chat_room_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_message_order_by!]
+
+        where: chat_room_message_bool_exp
+  ): [chat_room_message!]!
+
+    chat_room_message_aggregate(
+        distinct_on: [chat_room_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_message_order_by!]
+
+        where: chat_room_message_bool_exp
+  ): chat_room_message_aggregate!
+  logged_user: logged_user!
+
+    room(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): [room!]!
+
+    room_aggregate(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): room_aggregate!
+
+    room_by_pk(id: Int!): room
+
+    user(
+        distinct_on: [user_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_order_by!]
+
+        where: user_bool_exp
+  ): [user!]!
+
+    user_aggregate(
+        distinct_on: [user_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_order_by!]
+
+        where: user_bool_exp
+  ): user_aggregate!
+
+    user_by_pk(id: Int!): user
+
+    user_room(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): [user_room!]!
+
+    user_room_aggregate(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): user_room_aggregate!
+
+    user_room_by_pk(room_id: Int!, user_id: Int!): user_room
+}
+
+type room {
+  created_at: timestamptz!
+
+    host: user!
+  host_id: Int!
+  id: Int!
+  introduction: String!
+
+    members(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): [user_room!]!
+
+    members_aggregate(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): user_room_aggregate!
+  name: String!
+}
+
+type room_aggregate {
+  aggregate: room_aggregate_fields
+  nodes: [room!]!
+}
+
+type room_aggregate_fields {
+  avg: room_avg_fields
+  count(columns: [room_select_column!], distinct: Boolean): Int
+  max: room_max_fields
+  min: room_min_fields
+  stddev: room_stddev_fields
+  stddev_pop: room_stddev_pop_fields
+  stddev_samp: room_stddev_samp_fields
+  sum: room_sum_fields
+  var_pop: room_var_pop_fields
+  var_samp: room_var_samp_fields
+  variance: room_variance_fields
+}
+
+input room_aggregate_order_by {
+  avg: room_avg_order_by
+  count: order_by
+  max: room_max_order_by
+  min: room_min_order_by
+  stddev: room_stddev_order_by
+  stddev_pop: room_stddev_pop_order_by
+  stddev_samp: room_stddev_samp_order_by
+  sum: room_sum_order_by
+  var_pop: room_var_pop_order_by
+  var_samp: room_var_samp_order_by
+  variance: room_variance_order_by
+}
+
+input room_arr_rel_insert_input {
+  data: [room_insert_input!]!
+  on_conflict: room_on_conflict
+}
+
+type room_avg_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_avg_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+input room_bool_exp {
+  _and: [room_bool_exp]
+  _not: room_bool_exp
+  _or: [room_bool_exp]
+  created_at: timestamptz_comparison_exp
+  host: user_bool_exp
+  host_id: Int_comparison_exp
+  id: Int_comparison_exp
+  introduction: String_comparison_exp
+  members: user_room_bool_exp
+  name: String_comparison_exp
+}
+
+enum room_constraint {
+    room_pkey
+}
+
+input room_inc_input {
+  host_id: Int
+  id: Int
+}
+
+input room_insert_input {
+  created_at: timestamptz
+  host: user_obj_rel_insert_input
+  host_id: Int
+  id: Int
+  introduction: String
+  members: user_room_arr_rel_insert_input
+  name: String
+}
+
+type room_max_fields {
+  created_at: timestamptz
+  host_id: Int
+  id: Int
+  introduction: String
+  name: String
+}
+
+input room_max_order_by {
+  created_at: order_by
+  host_id: order_by
+  id: order_by
+  introduction: order_by
+  name: order_by
+}
+
+type room_min_fields {
+  created_at: timestamptz
+  host_id: Int
+  id: Int
+  introduction: String
+  name: String
+}
+
+input room_min_order_by {
+  created_at: order_by
+  host_id: order_by
+  id: order_by
+  introduction: order_by
+  name: order_by
+}
+
+type room_mutation_response {
+    affected_rows: Int!
+
+    returning: [room!]!
+}
+
+input room_obj_rel_insert_input {
+  data: room_insert_input!
+  on_conflict: room_on_conflict
+}
+
+input room_on_conflict {
+  constraint: room_constraint!
+  update_columns: [room_update_column!]!
+  where: room_bool_exp
+}
+
+input room_order_by {
+  created_at: order_by
+  host: user_order_by
+  host_id: order_by
+  id: order_by
+  introduction: order_by
+  members_aggregate: user_room_aggregate_order_by
+  name: order_by
+}
+
+enum room_select_column {
+    created_at
+
+    host_id
+
+    id
+
+    introduction
+
+    name
+}
+
+input room_set_input {
+  created_at: timestamptz
+  host_id: Int
+  id: Int
+  introduction: String
+  name: String
+}
+
+type room_stddev_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_stddev_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+type room_stddev_pop_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_stddev_pop_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+type room_stddev_samp_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_stddev_samp_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+type room_sum_fields {
+  host_id: Int
+  id: Int
+}
+
+input room_sum_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+enum room_update_column {
+    created_at
+
+    host_id
+
+    id
+
+    introduction
+
+    name
+}
+
+type room_var_pop_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_var_pop_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+type room_var_samp_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_var_samp_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+type room_variance_fields {
+  host_id: Float
+  id: Float
+}
+
+input room_variance_order_by {
+  host_id: order_by
+  id: order_by
+}
+
+input sign_up_input {
+  name: String!
+  password: String!
+}
+
+type sign_up_response {
+  id: Int!
+}
+
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+extend type Subscription {
+    chat_message(
+        distinct_on: [chat_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_message_order_by!]
+
+        where: chat_message_bool_exp
+  ): [chat_message!]!
+
+    chat_message_aggregate(
+        distinct_on: [chat_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_message_order_by!]
+
+        where: chat_message_bool_exp
+  ): chat_message_aggregate!
+
+    chat_message_by_pk(id: Int!): chat_message
+
+    chat_room_member_offline(
+        distinct_on: [chat_room_member_offline_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_offline_order_by!]
+
+        where: chat_room_member_offline_bool_exp
+  ): [chat_room_member_offline!]!
+
+    chat_room_member_offline_aggregate(
+        distinct_on: [chat_room_member_offline_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_offline_order_by!]
+
+        where: chat_room_member_offline_bool_exp
+  ): chat_room_member_offline_aggregate!
+
+    chat_room_member_online(
+        distinct_on: [chat_room_member_online_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_online_order_by!]
+
+        where: chat_room_member_online_bool_exp
+  ): [chat_room_member_online!]!
+
+    chat_room_member_online_aggregate(
+        distinct_on: [chat_room_member_online_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_member_online_order_by!]
+
+        where: chat_room_member_online_bool_exp
+  ): chat_room_member_online_aggregate!
+
+    chat_room_message(
+        distinct_on: [chat_room_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_message_order_by!]
+
+        where: chat_room_message_bool_exp
+  ): [chat_room_message!]!
+
+    chat_room_message_aggregate(
+        distinct_on: [chat_room_message_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [chat_room_message_order_by!]
+
+        where: chat_room_message_bool_exp
+  ): chat_room_message_aggregate!
+
+    room(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): [room!]!
+
+    room_aggregate(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): room_aggregate!
+
+    room_by_pk(id: Int!): room
+
+    user(
+        distinct_on: [user_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_order_by!]
+
+        where: user_bool_exp
+  ): [user!]!
+
+    user_aggregate(
+        distinct_on: [user_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_order_by!]
+
+        where: user_bool_exp
+  ): user_aggregate!
+
+    user_by_pk(id: Int!): user
+
+    user_room(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): [user_room!]!
+
+    user_room_aggregate(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): user_room_aggregate!
+
+    user_room_by_pk(room_id: Int!, user_id: Int!): user_room
+}
+
+scalar timestamptz
+
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+type user {
+  created_at: timestamptz!
+
+    entered_rooms(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): [user_room!]!
+
+    entered_rooms_aggregate(
+        distinct_on: [user_room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [user_room_order_by!]
+
+        where: user_room_bool_exp
+  ): user_room_aggregate!
+
+    hosted_rooms(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): [room!]!
+
+    hosted_rooms_aggregate(
+        distinct_on: [room_select_column!]
+
+        limit: Int
+
+        offset: Int
+
+        order_by: [room_order_by!]
+
+        where: room_bool_exp
+  ): room_aggregate!
+  id: Int!
+  last_seen: timestamptz!
+  name: String!
+  password: String!
+}
+
+type user_aggregate {
+  aggregate: user_aggregate_fields
+  nodes: [user!]!
+}
+
+type user_aggregate_fields {
+  avg: user_avg_fields
+  count(columns: [user_select_column!], distinct: Boolean): Int
+  max: user_max_fields
+  min: user_min_fields
+  stddev: user_stddev_fields
+  stddev_pop: user_stddev_pop_fields
+  stddev_samp: user_stddev_samp_fields
+  sum: user_sum_fields
+  var_pop: user_var_pop_fields
+  var_samp: user_var_samp_fields
+  variance: user_variance_fields
+}
+
+input user_aggregate_order_by {
+  avg: user_avg_order_by
+  count: order_by
+  max: user_max_order_by
+  min: user_min_order_by
+  stddev: user_stddev_order_by
+  stddev_pop: user_stddev_pop_order_by
+  stddev_samp: user_stddev_samp_order_by
+  sum: user_sum_order_by
+  var_pop: user_var_pop_order_by
+  var_samp: user_var_samp_order_by
+  variance: user_variance_order_by
+}
+
+input user_arr_rel_insert_input {
+  data: [user_insert_input!]!
+  on_conflict: user_on_conflict
+}
+
+type user_avg_fields {
+  id: Float
+}
+
+input user_avg_order_by {
+  id: order_by
+}
+
+input user_bool_exp {
+  _and: [user_bool_exp]
+  _not: user_bool_exp
+  _or: [user_bool_exp]
+  created_at: timestamptz_comparison_exp
+  entered_rooms: user_room_bool_exp
+  hosted_rooms: room_bool_exp
+  id: Int_comparison_exp
+  last_seen: timestamptz_comparison_exp
+  name: String_comparison_exp
+  password: String_comparison_exp
+}
+
+enum user_constraint {
+    user_name_key
+
+    user_pkey
+}
+
+input user_inc_input {
+  id: Int
+}
+
+input user_insert_input {
+  created_at: timestamptz
+  entered_rooms: user_room_arr_rel_insert_input
+  hosted_rooms: room_arr_rel_insert_input
+  id: Int
+  last_seen: timestamptz
+  name: String
+  password: String
+}
+
+type user_max_fields {
+  created_at: timestamptz
+  id: Int
+  last_seen: timestamptz
+  name: String
+  password: String
+}
+
+input user_max_order_by {
+  created_at: order_by
+  id: order_by
+  last_seen: order_by
+  name: order_by
+  password: order_by
+}
+
+type user_min_fields {
+  created_at: timestamptz
+  id: Int
+  last_seen: timestamptz
+  name: String
+  password: String
+}
+
+input user_min_order_by {
+  created_at: order_by
+  id: order_by
+  last_seen: order_by
+  name: order_by
+  password: order_by
+}
+
+type user_mutation_response {
+    affected_rows: Int!
+
+    returning: [user!]!
+}
+
+input user_obj_rel_insert_input {
+  data: user_insert_input!
+  on_conflict: user_on_conflict
+}
+
+input user_on_conflict {
+  constraint: user_constraint!
+  update_columns: [user_update_column!]!
+  where: user_bool_exp
+}
+
+input user_order_by {
+  created_at: order_by
+  entered_rooms_aggregate: user_room_aggregate_order_by
+  hosted_rooms_aggregate: room_aggregate_order_by
+  id: order_by
+  last_seen: order_by
+  name: order_by
+  password: order_by
+}
+
+type user_room {
+    room: room!
+  room_id: Int!
+
+    user: user!
+  user_enter_at: timestamptz!
+  user_id: Int!
+  user_last_reply: timestamptz
+  user_last_typed: timestamptz
+}
+
+type user_room_aggregate {
+  aggregate: user_room_aggregate_fields
+  nodes: [user_room!]!
+}
+
+type user_room_aggregate_fields {
+  avg: user_room_avg_fields
+  count(columns: [user_room_select_column!], distinct: Boolean): Int
+  max: user_room_max_fields
+  min: user_room_min_fields
+  stddev: user_room_stddev_fields
+  stddev_pop: user_room_stddev_pop_fields
+  stddev_samp: user_room_stddev_samp_fields
+  sum: user_room_sum_fields
+  var_pop: user_room_var_pop_fields
+  var_samp: user_room_var_samp_fields
+  variance: user_room_variance_fields
+}
+
+input user_room_aggregate_order_by {
+  avg: user_room_avg_order_by
+  count: order_by
+  max: user_room_max_order_by
+  min: user_room_min_order_by
+  stddev: user_room_stddev_order_by
+  stddev_pop: user_room_stddev_pop_order_by
+  stddev_samp: user_room_stddev_samp_order_by
+  sum: user_room_sum_order_by
+  var_pop: user_room_var_pop_order_by
+  var_samp: user_room_var_samp_order_by
+  variance: user_room_variance_order_by
+}
+
+input user_room_arr_rel_insert_input {
+  data: [user_room_insert_input!]!
+  on_conflict: user_room_on_conflict
+}
+
+type user_room_avg_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_avg_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+input user_room_bool_exp {
+  _and: [user_room_bool_exp]
+  _not: user_room_bool_exp
+  _or: [user_room_bool_exp]
+  room: room_bool_exp
+  room_id: Int_comparison_exp
+  user: user_bool_exp
+  user_enter_at: timestamptz_comparison_exp
+  user_id: Int_comparison_exp
+  user_last_reply: timestamptz_comparison_exp
+  user_last_typed: timestamptz_comparison_exp
+}
+
+enum user_room_constraint {
+    user_room_pkey
+}
+
+input user_room_inc_input {
+  room_id: Int
+  user_id: Int
+}
+
+input user_room_insert_input {
+  room: room_obj_rel_insert_input
+  room_id: Int
+  user: user_obj_rel_insert_input
+  user_enter_at: timestamptz
+  user_id: Int
+  user_last_reply: timestamptz
+  user_last_typed: timestamptz
+}
+
+type user_room_max_fields {
+  room_id: Int
+  user_enter_at: timestamptz
+  user_id: Int
+  user_last_reply: timestamptz
+  user_last_typed: timestamptz
+}
+
+input user_room_max_order_by {
+  room_id: order_by
+  user_enter_at: order_by
+  user_id: order_by
+  user_last_reply: order_by
+  user_last_typed: order_by
+}
+
+type user_room_min_fields {
+  room_id: Int
+  user_enter_at: timestamptz
+  user_id: Int
+  user_last_reply: timestamptz
+  user_last_typed: timestamptz
+}
+
+input user_room_min_order_by {
+  room_id: order_by
+  user_enter_at: order_by
+  user_id: order_by
+  user_last_reply: order_by
+  user_last_typed: order_by
+}
+
+type user_room_mutation_response {
+    affected_rows: Int!
+
+    returning: [user_room!]!
+}
+
+input user_room_obj_rel_insert_input {
+  data: user_room_insert_input!
+  on_conflict: user_room_on_conflict
+}
+
+input user_room_on_conflict {
+  constraint: user_room_constraint!
+  update_columns: [user_room_update_column!]!
+  where: user_room_bool_exp
+}
+
+input user_room_order_by {
+  room: room_order_by
+  room_id: order_by
+  user: user_order_by
+  user_enter_at: order_by
+  user_id: order_by
+  user_last_reply: order_by
+  user_last_typed: order_by
+}
+
+enum user_room_select_column {
+    room_id
+
+    user_enter_at
+
+    user_id
+
+    user_last_reply
+
+    user_last_typed
+}
+
+input user_room_set_input {
+  room_id: Int
+  user_enter_at: timestamptz
+  user_id: Int
+  user_last_reply: timestamptz
+  user_last_typed: timestamptz
+}
+
+type user_room_stddev_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_stddev_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+type user_room_stddev_pop_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_stddev_pop_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+type user_room_stddev_samp_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_stddev_samp_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+type user_room_sum_fields {
+  room_id: Int
+  user_id: Int
+}
+
+input user_room_sum_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+enum user_room_update_column {
+    room_id
+
+    user_enter_at
+
+    user_id
+
+    user_last_reply
+
+    user_last_typed
+}
+
+type user_room_var_pop_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_var_pop_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+type user_room_var_samp_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_var_samp_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+type user_room_variance_fields {
+  room_id: Float
+  user_id: Float
+}
+
+input user_room_variance_order_by {
+  room_id: order_by
+  user_id: order_by
+}
+
+enum user_select_column {
+    created_at
+
+    id
+
+    last_seen
+
+    name
+
+    password
+}
+
+input user_set_input {
+  created_at: timestamptz
+  id: Int
+  last_seen: timestamptz
+  name: String
+  password: String
+}
+
+type user_stddev_fields {
+  id: Float
+}
+
+input user_stddev_order_by {
+  id: order_by
+}
+
+type user_stddev_pop_fields {
+  id: Float
+}
+
+input user_stddev_pop_order_by {
+  id: order_by
+}
+
+type user_stddev_samp_fields {
+  id: Float
+}
+
+input user_stddev_samp_order_by {
+  id: order_by
+}
+
+type user_sum_fields {
+  id: Int
+}
+
+input user_sum_order_by {
+  id: order_by
+}
+
+enum user_update_column {
+    created_at
+
+    id
+
+    last_seen
+
+    name
+
+    password
+}
+
+type user_var_pop_fields {
+  id: Float
+}
+
+input user_var_pop_order_by {
+  id: order_by
+}
+
+type user_var_samp_fields {
+  id: Float
+}
+
+input user_var_samp_order_by {
+  id: order_by
+}
+
+type user_variance_fields {
+  id: Float
+}
+
+input user_variance_order_by {
+  id: order_by
+}
+

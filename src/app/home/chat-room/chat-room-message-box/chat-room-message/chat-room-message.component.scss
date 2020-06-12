@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.name {
+  font-size: 16px;
+}
+
+.time {
+  padding-left: 8px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.content {
+  margin: 3px 0 0 0;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: break-all;
+}

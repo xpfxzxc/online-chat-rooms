@@ -1,0 +1,14 @@
+<ng-container *ngIf="(homeService.chatRoomSubtitle$ | async) || {} as data">
+  <span class="with-icon">
+    <mat-icon>person</mat-icon>
+    {{ data?.host?.name || 'N/A' }}
+  </span>
+  <span class="with-icon">
+    <mat-icon>message</mat-icon>
+    {{ data.totalMessages >= 0 ?  data.totalMessages : 'N/A' }}
+  </span>
+  <span class="with-icon">
+    <mat-icon>group</mat-icon>
+    {{ data.totalOnlineMembers >= 0 ? data.totalOnlineMembers : 'N/A' }}/{{ data.totalOnlineMembers >= 0 ? (data.totalOnlineMembers + data.totalOfflineMembers) : 'N/A' }}
+  </span>
+</ng-container>

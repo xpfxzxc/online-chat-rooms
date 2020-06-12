@@ -1,0 +1,27 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      我创建的房间
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  
+  <mat-action-list dense *ngIf="homeService.myCreatedRooms$ | async as myCreatedRooms">
+    <button mat-list-item *ngFor="let room of myCreatedRooms" (click)="homeService.switchRoom(room.id)">
+      {{ room.name }}
+    </button>
+  </mat-action-list>
+</mat-expansion-panel>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      我进入的房间
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  
+  <mat-action-list dense *ngIf="homeService.myEnteredRooms$ | async as myEnteredRooms">
+    <button mat-list-item *ngFor="let room of myEnteredRooms" (click)="homeService.switchRoom(room.room.id)">
+      {{ room.room.name }}
+    </button>
+  </mat-action-list>
+</mat-expansion-panel>

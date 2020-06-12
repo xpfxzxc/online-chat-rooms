@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.description {
+  height: 280px;
+  margin-bottom: 2px;
+}
+
+.member-list {
+  flex-grow: 1;
+}

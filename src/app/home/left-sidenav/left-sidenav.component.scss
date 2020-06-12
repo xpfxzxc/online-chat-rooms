@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nav-list {
+  flex-grow: 1;
+}
+
+.mat-divider {
+  margin: 5px 0;
+}
+
+.nav-list,
+.action {
+  padding: 0 5px;
+}

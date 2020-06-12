@@ -1,0 +1,15 @@
+<div class="fixed-header">
+  <span class="room-member-status">房间成员</span>
+  <button mat-icon-button><mat-icon>search</mat-icon></button>
+</div>
+
+<mat-list dense class="list" *ngIf="homeService.chatRoomMemberList$ | async as data">
+  <mat-list-item *ngFor="let member of data.online" class="list-theme">
+    <mat-icon color="primary" class="status-icon">lens</mat-icon>
+    <span class="name">{{ member.name }}</span>
+  </mat-list-item>
+  <mat-list-item *ngFor="let member of data.offline" class="list-theme">
+    <mat-icon color="warn" class="status-icon">lens</mat-icon>
+    <span class="name">{{ member.name }}</span>
+  </mat-list-item>
+</mat-list>

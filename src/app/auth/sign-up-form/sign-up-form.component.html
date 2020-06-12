@@ -1,0 +1,22 @@
+<form [formGroup]="signUpForm" class="sign-up-form">
+  <mat-form-field hintLabel="2 ~ 25 个任意字符，前后不含空格">
+    <input matInput placeholder="昵称" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field hintLabel="至少 6 个字符">
+    <input matInput type="password" placeholder="密码" formControlName="password">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="确认密码" formControlName="passwordConfirmation">
+    <mat-hint>请再次输入密码</mat-hint>
+    <mat-error *ngIf="signUpForm.get('passwordConfirmation').errors?.passwordConfirmation">两次密码输入不一致</mat-error>
+  </mat-form-field>
+
+  <div class="spinner-btn">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner diameter="24"></mat-spinner>
+    </div>
+    <button mat-raised-button color="primary" class="sign-up-btn" (click)="submit()" [disabled]="loading">注册</button>
+  </div>
+</form>

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "./toast.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Spinner Button */
+.spinner-btn {
+  position: relative;
+  display: inline-block;
+
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.list-theme {
+  cursor: default;
+
+  &.mat-list-item:hover {
+    background-color: #673ab717;
+  }
+
+  &.mat-list-item:active {
+    background-color: #673ab740;
+  }
+}

@@ -1,0 +1,206 @@
+mutation Login($input: login_input!) {
+  login(input: $input) {
+    user {
+      id
+      name
+    }
+    token
+  }
+}
+
+mutation SignUp($input: sign_up_input!) {
+  sign_up(input: $input) {
+    id
+  }
+}
+
+query LoggedUser {
+  logged_user {
+    id
+    name
+  }
+}
+
+mutation Rename($new_name: String!) {
+  update_user(where: {}, _set: { name: $new_name }) {
+    returning {
+      name
+    }
+  }
+}
+
+fragment RoomFields on room {
+  id
+  name
+  introduction
+  created_at
+  host_id
+}
+
+mutation CreateRoom($name: String!, $introduction: String) {
+  insert_room(
+    objects: { name: $name, introduction: $introduction, members: { data: {} } }
+  ) {
+    affected_rows
+    returning {
+      ...RoomFields
+    }
+  }
+}
+
+query Home($user_id: Int!) {
+  myCreatedRooms: room(where: { host_id: { _eq: $user_id } }) {
+    ...RoomFields
+  }
+  myEnteredRooms: user_room {
+    room {
+      ...RoomFields
+    }
+  }
+}
+
+fragment ChatRoomOnlineMemberFields on chat_room_member_online {
+  member_id
+  member_name
+  member_last_seen
+}
+
+fragment ChatRoomOfflineMemberFields on chat_room_member_offline {
+  member_id
+  member_name
+  member_last_seen
+}
+
+fragment ChatRoomMessageFields on chat_room_message {
+  id
+  created_at
+  message
+  sender {
+    id
+    name
+  }
+}
+
+query Chat($room_id: Int!) {
+  user_room(where: { room_id: { _eq: $room_id } }) {
+    room {
+      id
+      name
+      host {
+        id
+        name
+      }
+      introduction
+      created_at
+    }
+  }
+  chat_room_message(
+    where: { room_id: { _eq: $room_id } }
+    order_by: { created_at: asc }
+  ) {
+    ...ChatRoomMessageFields
+  }
+  chat_room_message_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+  chat_room_member_offline(where: { room_id: { _eq: $room_id } }) {
+    ...ChatRoomOfflineMemberFields
+  }
+  chat_room_member_offline_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+  chat_room_member_online(where: { room_id: { _eq: $room_id } }) {
+    ...ChatRoomOnlineMemberFields
+  }
+  chat_room_member_online_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+}
+
+mutation EnterRoom($room_id: Int!) {
+  insert_user_room(objects: { room_id: $room_id }) {
+    returning {
+      room {
+        ...RoomFields
+      }
+    }
+  }
+}
+
+mutation LeaveRoom($room_id: Int!) {
+  delete_user_room(where: { room_id: { _eq: $room_id } }) {
+    affected_rows
+  }
+}
+
+mutation SendChatMessage($message: String!, $room_id: Int!) {
+  insert_chat_message(objects: { message: $message, room_id: $room_id }) {
+    affected_rows
+  }
+}
+
+mutation EmitOnlineEvent($user_id: Int!) {
+  update_user(where: { id: { _eq: $user_id } }, _set: { last_seen: "now()" }) {
+    affected_rows
+  }
+}
+
+subscription ChatRoomMessage($room_id: Int!) {
+  chat_room_message(
+    where: { room_id: { _eq: $room_id } }
+    order_by: { created_at: desc }
+    limit: 1
+  ) {
+    ...ChatRoomMessageFields
+  }
+}
+
+subscription ChatRoomMessageAggregate($room_id: Int!) {
+  chat_room_message_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+}
+
+subscription ChatRoomOfflineMember($room_id: Int!) {
+  chat_room_member_offline(
+    where: { room_id: { _eq: $room_id } }
+    limit: 1
+    order_by: { member_last_seen: desc }
+  ) {
+    ...ChatRoomOfflineMemberFields
+  }
+}
+
+subscription ChatRoomOnlineMember($room_id: Int!) {
+  chat_room_member_online(
+    where: { room_id: { _eq: $room_id } }
+    limit: 1
+    order_by: { member_last_seen: desc }
+  ) {
+    ...ChatRoomOnlineMemberFields
+  }
+}
+
+subscription ChatRoomOfflineMemberAggregate($room_id: Int!) {
+  chat_room_member_offline_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+}
+
+subscription ChatRoomOnlineMemberAggregate($room_id: Int!) {
+  chat_room_member_online_aggregate(where: { room_id: { _eq: $room_id } }) {
+    aggregate {
+      count
+    }
+  }
+}

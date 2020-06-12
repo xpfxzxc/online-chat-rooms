@@ -1,0 +1,8 @@
+<ng-container *ngIf="homeService.chatRoomTitle$ | async as data; else empty">
+  #{{ data.id }} {{ data.name }}
+</ng-container>
+
+<ng-template #empty>
+  [请选择一个房间]
+</ng-template>
+

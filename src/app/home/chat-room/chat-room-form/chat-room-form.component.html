@@ -1,0 +1,14 @@
+<form [formGroup]="chatMessageForm" class="form">
+  <div class="text-editor">
+    <textarea matInput placeholder="请输入消息..." formControlName="message" #textarea></textarea>
+    <div class="character-counter">已输入 {{ textarea.value.length }} / 1000 字符</div>
+  </div>
+
+
+  <div class="spinner-btn">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner diameter="24"></mat-spinner>
+    </div>
+    <button mat-raised-button color="primary" class="send-btn" (click)="submit()" [disabled]="loading">发 送</button>
+  </div>
+</form>

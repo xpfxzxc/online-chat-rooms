@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.mat-card {
+  width: 100%;
+  max-width: 400px;
+  min-width: 360px;
+  padding: 10px 5px;
+}
+
+.mat-card-title {
+  font-size: 28px;
+  padding: 40px 0 20px;
+  text-align: center;
+}
+
+.mat-tab-link {
+  flex: 1;
+  font-size: 20px;
+  letter-spacing: 10px;
+}
